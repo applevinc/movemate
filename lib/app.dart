@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/theme.dart';
+import 'package:movemate/screens/dashboardview.dart';
 
 class MoveMateApp extends StatelessWidget {
   const MoveMateApp({super.key});
@@ -15,11 +16,7 @@ class MoveMateApp extends StatelessWidget {
           title: 'Movemate',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.theme,
-          home: const Scaffold(
-            body: Center(
-              child: Text('Hello World!'),
-            ),
-          ),
+          home: const DashboardView(),
         );
       },
     );
