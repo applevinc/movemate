@@ -7,7 +7,7 @@ class AppTheme {
 
   static ThemeData get theme {
     return ThemeData(
-      scaffoldBackgroundColor: AppColors.white,
+      scaffoldBackgroundColor: const Color(0xfffbfbfb),
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
         primarySwatch: MaterialColor(

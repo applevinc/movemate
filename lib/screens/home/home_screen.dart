@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/screens/home/components/home_appbar_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,11 +7,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          'Home Screen',
-          style: AppText.bold500(context),
-        ),
+      body: Column(
+        children: const [
+          HomeAppBarView(),
+        ],
       ),
     );
   }
