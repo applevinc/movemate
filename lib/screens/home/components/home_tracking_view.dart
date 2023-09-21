@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/screens/widgets/custom_divider.dart';
 
 class HomeTrackingView extends StatelessWidget {
   const HomeTrackingView({super.key});
@@ -89,11 +90,7 @@ class ShipmentStopCard extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            height: 1.h,
-            margin: EdgeInsets.symmetric(vertical: 20.h),
-            color: AppColors.grey,
-          ),
+          const CustomDivider(),
           Row(
             children: [
               imageIcon(),

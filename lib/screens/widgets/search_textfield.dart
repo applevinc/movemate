@@ -4,7 +4,16 @@ import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField({super.key});
+  const SearchTextField({
+    super.key,
+    this.readOnly = true,
+    this.autoFocus = true,
+    this.onTap,
+  });
+
+  final bool readOnly;
+  final bool autoFocus;
+  final Function()? onTap;
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -27,39 +36,47 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: searchController,
-      readOnly: true,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        hintText: 'Enter the receipt number ...',
-        hintStyle: AppText.bold500(context).copyWith(
+    return Material(
+      type: MaterialType.transparency,
+      child: TextField(
+        controller: searchController,
+        readOnly: widget.readOnly,
+        autofocus: widget.autoFocus,
+        onTap: widget.onTap,
+        style: AppText.bold500(context).copyWith(
           color: AppColors.textGrey,
         ),
-        contentPadding: EdgeInsets.all(8.sp),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        prefixIcon: Padding(
-          padding: EdgeInsets.all(8.sp),
-          child: Icon(
-            Icons.search,
-            color: AppColors.primary,
-            size: 22.sp,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: 'Enter the receipt number ...',
+          hintStyle: AppText.bold500(context).copyWith(
+            color: AppColors.textGrey,
           ),
-        ),
-        suffixIcon: Container(
-          margin: EdgeInsets.all(8.sp),
-          padding: EdgeInsets.all(10.sp),
-          decoration: const BoxDecoration(
-            color: AppColors.orange,
-            shape: BoxShape.circle,
+          contentPadding: EdgeInsets.all(8.sp),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30.r),
           ),
-          child: Icon(
-            Icons.shop_outlined,
-            color: Colors.white,
-            size: 24.sp,
+          prefixIcon: Padding(
+            padding: EdgeInsets.all(8.sp),
+            child: Icon(
+              Icons.search,
+              color: AppColors.primary,
+              size: 22.sp,
+            ),
+          ),
+          suffixIcon: Container(
+            margin: EdgeInsets.all(8.sp),
+            padding: EdgeInsets.all(10.sp),
+            decoration: const BoxDecoration(
+              color: AppColors.orange,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.shop_outlined,
+              color: Colors.white,
+              size: 24.sp,
+            ),
           ),
         ),
       ),

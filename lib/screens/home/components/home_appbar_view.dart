@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/core/utils/navigator.dart';
+import 'package:movemate/screens/home/search_shipment/search_shipment_screen.dart';
 import 'package:movemate/screens/widgets/custom_cached_network_image.dart';
 import 'package:movemate/screens/widgets/search_textfield.dart';
 
@@ -88,7 +90,14 @@ class HomeAppBarView extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20.h),
-              const SearchTextField(),
+              Hero(
+                tag: 'search',
+                child: SearchTextField(
+                  onTap: () {
+                    AppNavigator.to(context, const SearchShipmentScreen());
+                  },
+                ),
+              ),
             ],
           ),
         ),
