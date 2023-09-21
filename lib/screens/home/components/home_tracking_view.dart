@@ -57,14 +57,7 @@ class ShipmentStopCard extends StatelessWidget {
           topLeft: Radius.circular(20.r),
           topRight: Radius.circular(20.r),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.06),
-            offset: const Offset(0, 3),
-            blurRadius: 6,
-            spreadRadius: 0,
-          ),
-        ],
+        boxShadow: AppColors.boxshadow,
       ),
       child: Column(
         children: [
@@ -231,14 +224,7 @@ class AddStopButton extends StatelessWidget {
           bottomLeft: Radius.circular(20.r),
           bottomRight: Radius.circular(20.r),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.06),
-            offset: const Offset(0, 3),
-            blurRadius: 6,
-            spreadRadius: 0,
-          ),
-        ],
+        boxShadow: AppColors.boxshadow,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

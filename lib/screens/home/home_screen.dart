@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/screens/home/components/home_appbar_view.dart';
+import 'package:movemate/screens/home/components/home_available_vehicles_view.dart';
 import 'package:movemate/screens/home/components/home_tracking_view.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,12 +10,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          HomeAppBarView(),
-          HomeTrackingView(),
-        ],
+      appBar: const HomeAppBarView(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 40.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            HomeTrackingView(),
+            HomeAvailableVehiclesView(),
+          ],
+        ),
       ),
     );
   }

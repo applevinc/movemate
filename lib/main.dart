@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:movemate/app.dart';
 
 void main() {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) {
     runApp(const MoveMateApp());
   });

@@ -6,8 +6,11 @@ import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/screens/widgets/custom_cached_network_image.dart';
 import 'package:movemate/screens/widgets/search_textfield.dart';
 
-class HomeAppBarView extends StatelessWidget {
+class HomeAppBarView extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBarView({super.key});
+
+  @override
+  Size get preferredSize => Size.fromHeight(152.h);
 
   @override
   Widget build(BuildContext context) {
