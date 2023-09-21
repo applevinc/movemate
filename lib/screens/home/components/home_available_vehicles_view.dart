@@ -9,34 +9,36 @@ class HomeAvailableVehiclesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(
-            top: 30.h,
-            left: AppPadding.horizontal,
-          ),
-          child: Text(
-            'Available vehicles',
-            style: AppText.bold600(context).copyWith(
-              fontSize: 18.sp,
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              top: 30.h,
+              left: AppPadding.horizontal,
+            ),
+            child: Text(
+              'Available vehicles',
+              style: AppText.bold600(context).copyWith(
+                fontSize: 18.sp,
+              ),
             ),
           ),
-        ),
-        SizedBox(height: 20.h),
-        SizedBox(
-          height: 200.h,
-          child: ListView.separated(
-            itemCount: 5,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
-            itemBuilder: (context, index) => const HomeAvailableVehicleCard(),
-            separatorBuilder: (context, index) => SizedBox(width: 20.w),
+          SizedBox(height: 20.h),
+          SizedBox(
+            height: 200.h,
+            child: ListView.separated(
+              itemCount: 5,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
+              itemBuilder: (context, index) => const HomeAvailableVehicleCard(),
+              separatorBuilder: (context, index) => SizedBox(width: 20.w),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -9,26 +9,28 @@ class HomeTrackingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: EdgeInsets.only(
         top: 20.h,
         left: AppPadding.horizontal,
         right: AppPadding.horizontal,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Tracking',
-            style: AppText.bold600(context).copyWith(
-              fontSize: 18.sp,
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tracking',
+              style: AppText.bold600(context).copyWith(
+                fontSize: 18.sp,
+              ),
             ),
-          ),
-          SizedBox(height: 20.h),
-          const ShipmentStopCard(),
-          SizedBox(height: 1.h),
-          const AddStopButton(),
-        ],
+            SizedBox(height: 20.h),
+            const ShipmentStopCard(),
+            SizedBox(height: 1.h),
+            const AddStopButton(),
+          ],
+        ),
       ),
     );
   }
