@@ -1,16 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/core/utils/navigator.dart';
+import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/shipment_history/components/shipment_history_appbar.dart';
+import 'package:movemate/screens/shipment_history/components/shipment_history_view.dart';
 
 class ShipmentHistoryScreen extends StatelessWidget {
   const ShipmentHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Shipment History Screen',
-          style: AppText.bold500(context),
+    return WillPopScope(
+      onWillPop: () {
+        AppNavigator.pushAndRemoveUntil(context, const DashboardView());
+        return Future.value(true);
+      },
+      child: DefaultTabController(
+        length: 5,
+        child: Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                const ShipmentHistoryAppBar(),
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                    top: AppPadding.vertical,
+                    left: AppPadding.horizontal,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: Text(
+                      'Shipments',
+                      style: AppText.bold600(context).copyWith(
+                        fontSize: 22.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: TabBarView(
+              children: List.generate(5, (index) => const ShipmentHistoryView()),
+            ),
+          ),
         ),
       ),
     );
