@@ -22,8 +22,17 @@ class _DashboardViewState extends State<DashboardView> {
     ShipmentHistoryScreen(),
     ProfileScreen(),
   ];
+  bool hideBottomNavigationBar = false;
 
   void _onPageTapped(int index) {
+    if (index == 1) {
+      hideBottomNavigationBar = true;
+    }
+
+    if (index == 2) {
+      hideBottomNavigationBar = true;
+    }
+
     setState(() {
       _selectedIndex = index;
     });
@@ -37,40 +46,42 @@ class _DashboardViewState extends State<DashboardView> {
 
     return Scaffold(
       body: pages.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calculate_outlined),
-            label: 'Calculate',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history_outlined),
-            label: 'Shipment',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        backgroundColor: AppColors.white,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.textGrey,
-        type: BottomNavigationBarType.fixed,
-        iconSize: 24.sp,
-        selectedLabelStyle: labelStyle.copyWith(
-          color: AppColors.primary,
-          fontWeight: FontWeight.w600,
-        ),
-        unselectedLabelStyle: labelStyle.copyWith(
-          color: AppColors.textGrey,
-        ),
-        onTap: _onPageTapped,
-      ),
+      bottomNavigationBar: hideBottomNavigationBar
+          ? const SizedBox.shrink()
+          : BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.calculate_outlined),
+                  label: 'Calculate',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.history_outlined),
+                  label: 'Shipment',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline),
+                  label: 'Profile',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              backgroundColor: AppColors.white,
+              selectedItemColor: AppColors.primary,
+              unselectedItemColor: AppColors.textGrey,
+              type: BottomNavigationBarType.fixed,
+              iconSize: 24.sp,
+              selectedLabelStyle: labelStyle.copyWith(
+                color: AppColors.primary,
+                fontWeight: FontWeight.w600,
+              ),
+              unselectedLabelStyle: labelStyle.copyWith(
+                color: AppColors.textGrey,
+              ),
+              onTap: _onPageTapped,
+            ),
     );
   }
 }

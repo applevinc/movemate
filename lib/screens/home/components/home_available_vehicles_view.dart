@@ -21,7 +21,7 @@ class HomeAvailableVehiclesView extends StatelessWidget {
             child: Text(
               'Available vehicles',
               style: AppText.bold600(context).copyWith(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
               ),
             ),
           ),

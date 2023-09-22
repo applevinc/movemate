@@ -23,7 +23,7 @@ class HomeTrackingView extends StatelessWidget {
             Text(
               'Tracking',
               style: AppText.bold600(context).copyWith(
-                fontSize: 18.sp,
+                fontSize: 16.sp,
               ),
             ),
             SizedBox(height: 20.h),
