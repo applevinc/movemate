@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
@@ -20,7 +21,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function(int)? onTap;
 
   @override
-  Size get preferredSize => Size.fromHeight(50.h);
+  Size get preferredSize => Size.fromHeight(55.h);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,6 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
       isScrollable: isScrollable,
       controller: controller,
       onTap: onTap,
-      physics: const BouncingScrollPhysics(),
       labelColor: Colors.white,
       unselectedLabelColor: const Color(0xffc2b4ee),
       labelStyle: AppText.bold600(context).copyWith(
@@ -43,6 +43,10 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
       indicatorWeight: 4.h,
       padding: EdgeInsets.zero,
       tabs: tabs,
-    );
+    ).animate().slideX(
+          begin: 0.2.h,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeIn,
+        );
   }
 }

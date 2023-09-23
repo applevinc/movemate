@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
@@ -10,20 +11,23 @@ class ShipmentHistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: 10,
+      itemCount: 50,
       padding: EdgeInsets.only(
         top: 10.h,
         left: AppPadding.horizontal,
         right: AppPadding.horizontal,
+        bottom: 40.h,
       ),
-      itemBuilder: (context, index) => const ShipmentHistoryCard(),
+      itemBuilder: (context, index) => ShipmentHistoryCard(index: index),
       separatorBuilder: (context, index) => SizedBox(height: 20.h),
     );
   }
 }
 
 class ShipmentHistoryCard extends StatelessWidget {
-  const ShipmentHistoryCard({super.key});
+  const ShipmentHistoryCard({super.key, required this.index});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +92,11 @@ class ShipmentHistoryCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).animate(key: UniqueKey()).slideY(
+          begin: 0.7.h,
+          duration: Duration(milliseconds: 600 + (index * 100)),
+          curve: Curves.easeIn,
+        );
   }
 }
 

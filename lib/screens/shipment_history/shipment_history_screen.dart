@@ -7,8 +7,31 @@ import 'package:movemate/screens/dashboardview.dart';
 import 'package:movemate/screens/shipment_history/components/shipment_history_appbar.dart';
 import 'package:movemate/screens/shipment_history/components/shipment_history_view.dart';
 
-class ShipmentHistoryScreen extends StatelessWidget {
+class ShipmentHistoryScreen extends StatefulWidget {
   const ShipmentHistoryScreen({super.key});
+
+  @override
+  State<ShipmentHistoryScreen> createState() => _ShipmentHistoryScreenState();
+}
+
+class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(
+      length: 5,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +46,7 @@ class ShipmentHistoryScreen extends StatelessWidget {
           body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
-                const ShipmentHistoryAppBar(),
+                 ShipmentHistoryAppBar(tabController: tabController),
                 SliverPadding(
                   padding: EdgeInsets.only(
                     top: AppPadding.vertical,
@@ -41,6 +64,7 @@ class ShipmentHistoryScreen extends StatelessWidget {
               ];
             },
             body: TabBarView(
+              controller: tabController,
               children: List.generate(5, (index) => const ShipmentHistoryView()),
             ),
           ),
