@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
@@ -6,64 +8,82 @@ import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/screens/widgets/custom_divider.dart';
 import 'package:movemate/screens/widgets/search_textfield.dart';
 
-class SearchShipmentScreen extends StatelessWidget {
+class SearchShipmentScreen extends StatefulWidget {
   const SearchShipmentScreen({super.key});
 
   @override
+  State<SearchShipmentScreen> createState() => _SearchShipmentScreenState();
+}
+
+class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            color: AppColors.primary,
-            padding: EdgeInsets.only(
-              top: 60.h,
-              right: AppPadding.horizontal,
-              left: AppPadding.horizontal,
-              bottom: 20.h,
-            ),
-            child: Row(
-              children: const [
-                BackButton(color: Colors.white),
-                Expanded(
-                  child: Hero(
-                    tag: 'search',
-                    child: SearchTextField(
-                      autoFocus: true,
-                      readOnly: false,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: Column(
+          children: [
+            Container(
+              color: AppColors.primary,
+              padding: EdgeInsets.only(
+                top: 60.h,
+                right: AppPadding.horizontal,
+                left: AppPadding.horizontal,
+                bottom: 20.h,
+              ),
+              child: Row(
+                children: const [
+                  BackButton(color: Colors.white),
+                  Expanded(
+                    child: Hero(
+                      tag: 'search',
+                      child: SearchTextField(
+                        autoFocus: true,
+                        readOnly: false,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(
-              vertical: 20.h,
-              horizontal: AppPadding.horizontal,
+            Container(
+              margin: EdgeInsets.symmetric(
+                vertical: 20.h,
+                horizontal: AppPadding.horizontal,
+              ),
+              padding: EdgeInsets.symmetric(vertical: 20.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: AppColors.boxshadow,
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemCount: 4,
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+                  return SearchShipmentResultView(index: index);
+                },
+                separatorBuilder: (context, index) => CustomDivider(
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                ).animate(key: UniqueKey()).slideY(
+                      begin: 0.7.h,
+                      duration: Duration(milliseconds: 600 + (index * 50)),
+                      curve: Curves.easeIn,
+                    ),
+              ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 20.h),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: AppColors.boxshadow,
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: Column(
-              children: const [
-                SearchShipmentResultView(),
-                CustomDivider(),
-                SearchShipmentResultView(),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class SearchShipmentResultView extends StatelessWidget {
-  const SearchShipmentResultView({super.key});
+  const SearchShipmentResultView({super.key, required this.index});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +129,10 @@ class SearchShipmentResultView extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).animate(key: UniqueKey()).slideY(
+          begin: 0.7.h,
+          duration: Duration(milliseconds: 600 + (index * 50)),
+          curve: Curves.easeIn,
+        );
   }
 }
