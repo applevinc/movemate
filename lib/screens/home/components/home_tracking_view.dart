@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
@@ -27,18 +28,22 @@ class HomeTrackingView extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h),
-            const ShipmentStopCard(),
+            const HomeShipmentStopCard(),
             SizedBox(height: 1.h),
             const AddStopButton(),
           ],
-        ),
+        ).animate(key: UniqueKey()).slideY(
+              begin: 0.2.h,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.easeIn,
+            ),
       ),
     );
   }
 }
 
-class ShipmentStopCard extends StatelessWidget {
-  const ShipmentStopCard({super.key});
+class HomeShipmentStopCard extends StatelessWidget {
+  const HomeShipmentStopCard({super.key});
 
   @override
   Widget build(BuildContext context) {

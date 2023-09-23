@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
@@ -23,7 +24,12 @@ class HomeAvailableVehiclesView extends StatelessWidget {
               style: AppText.bold600(context).copyWith(
                 fontSize: 16.sp,
               ),
-            ),
+            ).animate(key: UniqueKey()).slideY(
+                  begin: 0.6.h,
+                  delay: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
+                  curve: Curves.easeIn,
+                ),
           ),
           SizedBox(height: 20.h),
           SizedBox(
@@ -79,10 +85,19 @@ class HomeAvailableVehicleCard extends StatelessWidget {
               height: 100.h,
               width: 80.w,
               color: Colors.black,
-            ),
+            ).animate(key: UniqueKey()).slideX(
+                  begin: 0.6.h,
+                  delay: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 600),
+                  curve: Curves.easeIn,
+                ),
           ),
         ],
       ),
-    );
+    ).animate(key: UniqueKey()).slideX(
+          begin: 0.6.h,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeIn,
+        );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
@@ -8,6 +9,9 @@ import 'package:movemate/screens/home/search_shipment/search_shipment_screen.dar
 import 'package:movemate/screens/widgets/custom_cached_network_image.dart';
 import 'package:movemate/screens/widgets/search_textfield.dart';
 
+const profileImageUrl =
+    'https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80';
+
 class HomeAppBarView extends StatelessWidget {
   const HomeAppBarView({super.key});
 
@@ -15,6 +19,8 @@ class HomeAppBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       stretch: true,
+      backgroundColor: Colors.white,
+      elevation: 0,
       expandedHeight: 152.h,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [StretchMode.zoomBackground],
@@ -31,10 +37,11 @@ class HomeAppBarView extends StatelessWidget {
               Row(
                 children: [
                   CustomCacheNetworkImage(
-                    image: '',
+                    image: profileImageUrl,
                     height: 50.h,
                     width: 50.h,
                     shape: BoxShape.circle,
+                    fit: BoxFit.cover,
                   ),
                   SizedBox(width: 10.w),
                   Column(
@@ -100,7 +107,11 @@ class HomeAppBarView extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ).animate(key: UniqueKey()).slideY(
+              begin: -0.5.h,
+              duration: const Duration(milliseconds: 600),
+              curve: Curves.easeIn,
+            ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
@@ -81,7 +82,11 @@ class _DashboardViewState extends State<DashboardView> {
                 color: AppColors.textGrey,
               ),
               onTap: _onPageTapped,
-            ),
+            ).animate(key: UniqueKey()).slideY(
+                begin: 0.7.h,
+                duration: const Duration(milliseconds: 600),
+                curve: Curves.easeIn,
+              ),
     );
   }
 }
