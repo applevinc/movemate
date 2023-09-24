@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movemate/assets/images.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 
@@ -29,7 +30,12 @@ class ShipmentCalculationPackingView extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Container(
-            padding: EdgeInsets.all(15.sp),
+            padding: EdgeInsets.only(
+              top: 5.h,
+              bottom: 5.h,
+              right: 15.w,
+              left: 5.w,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12.r),
@@ -37,12 +43,11 @@ class ShipmentCalculationPackingView extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.add_box,
-                  size: 24.sp,
-                  color: Colors.grey,
+                Image.asset(
+                  AppImages.box,
+                  height: 50.h,
+                  width: 50.h,
                 ),
-                SizedBox(width: 10.w),
                 Container(
                   width: 1.w,
                   height: 30.h,

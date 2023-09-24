@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movemate/assets/images.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 
@@ -59,21 +60,21 @@ class _ShipmentCalculationDestinationViewState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _DestinationInputField(
-                icon: Icons.cloud_download_outlined,
+                icon: AppImages.senderLocation,
                 hintText: 'Sender location',
                 controller: senderLocationController,
                 duration: 600,
               ),
               SizedBox(height: gap),
               _DestinationInputField(
-                icon: Icons.cloud_download_outlined,
+                icon: AppImages.receiverLocation,
                 hintText: 'Receiver location',
                 controller: receiverLocationController,
                 duration: 700,
               ),
               SizedBox(height: gap),
               _DestinationInputField(
-                icon: Icons.cloud_download_outlined,
+                icon: AppImages.weight,
                 hintText: 'Approx weight',
                 controller: receiverLocationController,
                 duration: 800,
@@ -94,7 +95,7 @@ class _DestinationInputField extends StatelessWidget {
     required this.duration,
   });
 
-  final IconData icon;
+  final String icon;
   final String hintText;
   final TextEditingController controller;
   final int duration;
@@ -117,7 +118,11 @@ class _DestinationInputField extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon),
+              Image.asset(
+                icon,
+                height: 24.h,
+                width: 24.h,
+              ),
               SizedBox(width: 8.w),
               Container(
                 width: 1.w,
@@ -133,7 +138,7 @@ class _DestinationInputField extends StatelessWidget {
         ),
       ),
     )
-        .animate(key: UniqueKey(), delay: const Duration(milliseconds: 250))
+        .animate(delay: const Duration(milliseconds: 250))
         .slideY(begin: 0.7.h, duration: Duration(milliseconds: duration));
   }
 }

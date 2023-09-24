@@ -11,7 +11,7 @@ class ShipmentCalculationAppBarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Animate(key: UniqueKey()).toggle(
+    return Animate().toggle(
       duration: const Duration(milliseconds: 500),
       builder: (context, value, child) {
         return AnimatedContainer(
