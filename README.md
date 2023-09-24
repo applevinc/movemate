@@ -1,6 +1,6 @@
 # Movemate
 
-A shipment tracking mobile app built [flutter](https://flutter.dev/) and made with rich animation with [flutter animate package](https://pub.dev/packages/flutter_animate).
+A shipment tracking mobile app built with rich animation with [flutter](https://flutter.dev/) and [flutter_animate](https://pub.dev/packages/flutter_animate).
 
 Dribble design found on [dribble.com](https://dribbble.com/shots/21617837-Movemate-Shipments-Mobile-App) by [Musemind UI/UX Agency](https://dribbble.com/musemindagency).
 
