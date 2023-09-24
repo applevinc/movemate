@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/widgets/animated_button.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -43,23 +44,18 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      width: width ?? size.width,
-      child: ElevatedButton(
-        onPressed: disabled
-            ? null
-            : isBusy
-                ? null
-                : onTap,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.orange,
-          disabledBackgroundColor: const Color(0xffC4C4C4),
-          elevation: elevation,
-          padding: padding ?? EdgeInsets.symmetric(vertical: 17.h),
-          shape: RoundedRectangleBorder(
-            borderRadius: borderRadius ?? BorderRadius.circular(30.r),
-            side: border ?? BorderSide.none,
-          ),
+    return AnimatedButton(
+      onTap: disabled
+          ? () {}
+          : isBusy
+              ? () {}
+              : onTap,
+      child: Container(
+        width: width ?? size.width,
+        padding: padding ?? EdgeInsets.symmetric(vertical: 17.h),
+        decoration: BoxDecoration(
+          color: backgroundColor ?? AppColors.orange,
+          borderRadius: borderRadius ?? BorderRadius.circular(30.r),
         ),
         child: isBusy
             ? SizedBox(
@@ -71,6 +67,7 @@ class AppButton extends StatelessWidget {
               )
             : Text(
                 label,
+                textAlign: TextAlign.center,
                 style: labelStyle ??
                     AppText.bold600(context).copyWith(
                       color: labelColor ?? Colors.white,

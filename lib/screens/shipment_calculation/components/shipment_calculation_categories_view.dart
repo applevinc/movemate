@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/widgets/animated_button.dart';
 
 class ShipmentCalculationCategoriesView extends StatefulWidget {
   const ShipmentCalculationCategoriesView({super.key});
@@ -81,7 +82,7 @@ class _ShipmentCalculationCategoriesViewState
   }
 }
 
-class _CategoryButton extends StatefulWidget {
+class _CategoryButton extends StatelessWidget {
   const _CategoryButton({
     required this.name,
     required this.selected,
@@ -93,70 +94,36 @@ class _CategoryButton extends StatefulWidget {
   final Function() onTap;
 
   @override
-  State<_CategoryButton> createState() => _CategoryButtonState();
-}
-
-class _CategoryButtonState extends State<_CategoryButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 150),
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final selected = widget.selected;
-    return GestureDetector(
-      onTap: () async {
-        _controller.forward();
-        await Future.delayed(const Duration(milliseconds: 200), () {
-          _controller.reverse();
-        });
-
-        widget.onTap();
-      },
-      child: ScaleTransition(
-        scale: Tween<double>(begin: 1.0, end: 0.7).animate(_controller),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 12.w),
-          decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xff9e9e9e)),
-            borderRadius: BorderRadius.circular(8.r),
-            color: selected ? const Color(0xff142333) : null,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (selected)
-                Padding(
-                  padding: EdgeInsets.only(right: 4.w),
-                  child: Icon(
-                    Icons.check,
-                    color: Colors.white,
-                    size: 18.sp,
-                  ),
-                ),
-              Text(
-                widget.name,
-                style: AppText.bold500(context).copyWith(
-                  color: selected ? Colors.white : null,
+    return AnimatedButton(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 12.w),
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xff9e9e9e)),
+          borderRadius: BorderRadius.circular(8.r),
+          color: selected ? const Color(0xff142333) : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (selected)
+              Padding(
+                padding: EdgeInsets.only(right: 4.w),
+                child: Icon(
+                  Icons.check,
+                  color: Colors.white,
+                  size: 18.sp,
                 ),
               ),
-            ],
-          ),
+            Text(
+              name,
+              style: AppText.bold500(context).copyWith(
+                color: selected ? Colors.white : null,
+              ),
+            ),
+          ],
         ),
       ),
     );
