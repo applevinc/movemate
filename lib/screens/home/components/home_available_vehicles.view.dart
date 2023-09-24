@@ -64,6 +64,7 @@ class _HomeAvailableVehiclesViewState extends State<HomeAvailableVehiclesView> {
               child: ListView.separated(
                 itemCount: vehicles.length,
                 shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
                 itemBuilder: (context, index) {

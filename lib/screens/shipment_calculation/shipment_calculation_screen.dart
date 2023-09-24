@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/utils/navigator.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/dashboard.view.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_appbar.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_categories.view.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_destination.view.dart';
@@ -23,43 +25,47 @@ class ShipmentCalculationScreen extends StatelessWidget {
         return Future.value(true);
       },
       child: CloseKeyboardWrapper(
-        child: Scaffold(
-          extendBodyBehindAppBar: true,
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ShipmentCalculationAppBarView(),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 20.h,
-                    left: AppPadding.horizontal,
-                    right: AppPadding.horizontal,
-                    bottom: 40.h,
-                  ),
-                  child: Column(
-                    children: [
-                      const ShipmentCalculationDestinationView(),
-                      const ShipmentCalculationPackingView(),
-                      const ShipmentCalculationCategoriesView(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 40.h,
-                          horizontal: AppPadding.horizontal,
-                        ),
-                        child: AppButton(
-                          label: 'Calculate',
-                          onTap: () {
-                            AppNavigator.to(
-                                context, const ShipmentCalculationSummaryScreen());
-                          },
-                        ),
-                      ).animate(delay: const Duration(milliseconds: 500)).slideY(
-                          begin: 0.7.h, duration: const Duration(milliseconds: 600)),
-                    ],
-                  ),
+        child: AnnotatedRegion(
+          value: SystemUiOverlayStyle.light.copyWith(
+            statusBarColor: AppColors.primary,
+          ),
+          child: Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ShipmentCalculationAppBarView(),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 20.h,
+                        left: AppPadding.horizontal,
+                        right: AppPadding.horizontal,
+                        bottom: 40.h,
+                      ),
+                      child: Column(
+                        children: [
+                          const ShipmentCalculationDestinationView(),
+                          const ShipmentCalculationPackingView(),
+                          const ShipmentCalculationCategoriesView(),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 40.h),
+                            child: AppButton(
+                              label: 'Calculate',
+                              onTap: () {
+                                AppNavigator.to(
+                                    context, const ShipmentCalculationSummaryScreen());
+                              },
+                            ),
+                          ).animate(delay: const Duration(milliseconds: 500)).slideY(
+                              begin: 0.7.h, duration: const Duration(milliseconds: 600)),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

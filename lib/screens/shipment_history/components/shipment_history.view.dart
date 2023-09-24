@@ -16,6 +16,7 @@ class ShipmentHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: 5,
+      physics: const BouncingScrollPhysics(),
       padding: EdgeInsets.only(
         top: 10.h,
         left: AppPadding.horizontal,

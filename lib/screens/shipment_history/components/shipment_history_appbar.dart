@@ -4,19 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/dashboard.view.dart';
 import 'package:movemate/widgets/animated_button.dart';
 import 'package:movemate/widgets/custom_tabbar.dart';
 
-final effects = <Effect>[
-  FadeEffect(duration: 100.ms, curve: Curves.easeOut),
-];
-
 class ShipmentHistoryAppBar extends StatefulWidget {
-  const ShipmentHistoryAppBar({
-    super.key,
-    required this.tabController,
-  });
+  const ShipmentHistoryAppBar({super.key, required this.tabController});
 
   final TabController tabController;
 
@@ -111,8 +104,8 @@ class _Tab extends StatelessWidget {
 
     return AnimatedButton(
       onTap: () {
-        controller.animateTo(index);
         onTap();
+        controller.animateTo(index);
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 10.h),

@@ -4,7 +4,7 @@ import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
 import 'package:movemate/enums/shipment_status.enum.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/dashboard.view.dart';
 import 'package:movemate/screens/shipment_history/components/shipment_history_appbar.dart';
 import 'package:movemate/screens/shipment_history/components/shipment_history.view.dart';
 
@@ -22,10 +22,7 @@ class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(
-      length: 5,
-      vsync: this,
-    );
+    tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -55,7 +52,7 @@ class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
                   child: Text(
                     'Shipments',
                     style: AppText.bold600(context).copyWith(
-                      fontSize: 22.sp,
+                      fontSize: 20.sp,
                     ),
                   ),
                 ),
@@ -64,6 +61,7 @@ class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
           },
           body: TabBarView(
             controller: tabController,
+            physics: const NeverScrollableScrollPhysics(),
             children: const [
               ShipmentHistoryView(shipmentStatus: ShipmentStatus.inProgress),
               ShipmentHistoryView(shipmentStatus: ShipmentStatus.completed),

@@ -81,7 +81,7 @@ class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
                       child: Hero(
                         tag: 'search',
                         child: SearchTextField(
-                          //autoFocus: true,
+                          autoFocus: false,
                           readOnly: false,
                           onChanged: (query) => search(query),
                         ),

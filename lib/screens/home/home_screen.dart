@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
       },
       child: const Scaffold(
         body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             HomeAppBarView(),
             HomeShipmentTrackingView(),

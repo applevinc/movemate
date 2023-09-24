@@ -40,7 +40,8 @@ class _ShipmentCalculationCategoriesViewState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      width: double.infinity,
       padding: EdgeInsets.only(top: 20.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

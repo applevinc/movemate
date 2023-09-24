@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/assets/images.dart';
 import 'package:movemate/core/utils/navigator.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/dashboard.view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

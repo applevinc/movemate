@@ -35,13 +35,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
+    return InkWell(
+      onTap: () {
+        widget.onTap();
         _controller.forward();
-        await Future.delayed(const Duration(milliseconds: 200), () {
+        Future.delayed(const Duration(milliseconds: 200), () {
           _controller.reverse();
         });
-        widget.onTap();
       },
       child: ScaleTransition(
         scale: Tween<double>(begin: 1.0, end: 0.9).animate(_controller),

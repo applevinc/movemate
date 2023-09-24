@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/dashboard.view.dart';
 
 class ShipmentCalculationAppBarView extends StatelessWidget {
   const ShipmentCalculationAppBarView({super.key});
@@ -12,13 +12,13 @@ class ShipmentCalculationAppBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Animate().toggle(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 600),
       builder: (context, value, child) {
         return AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
-          height: value ? 170.h : 110.h,
-          padding: EdgeInsets.only(top: 60.h, bottom: 20.h),
+          duration: const Duration(milliseconds: 600),
+          height: value ? 100.h : 55.h,
           color: AppColors.primary,
+          alignment: Alignment.topCenter,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -27,10 +27,7 @@ class ShipmentCalculationAppBarView extends StatelessWidget {
                 onPressed: () {
                   AppNavigator.pushAndRemoveUntil(context, const DashboardView());
                 },
-              ).animate().slideX(
-                  begin: -0.5.w,
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.easeIn),
+              ).animate().slideX(begin: -0.5.w, curve: Curves.easeIn),
               Text(
                 'Calculate',
                 style: AppText.bold500(context).copyWith(
@@ -39,17 +36,11 @@ class ShipmentCalculationAppBarView extends StatelessWidget {
                 ),
               )
                   .animate()
-                  .fade(duration: const Duration(milliseconds: 600), curve: Curves.easeIn)
-                  .slideY(
-                      begin: 0.5.h,
-                      duration: const Duration(milliseconds: 600),
-                      curve: Curves.easeIn),
-              IgnorePointer(
-                ignoring: true,
-                child: BackButton(
-                  color: Colors.transparent,
-                  onPressed: () {},
-                ),
+                  .fade(curve: Curves.easeIn)
+                  .slideY(begin: 0.2.h, curve: Curves.easeIn),
+              BackButton(
+                color: Colors.transparent,
+                onPressed: () {},
               ),
             ],
           ),

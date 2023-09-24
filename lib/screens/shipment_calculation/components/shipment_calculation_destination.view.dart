@@ -76,7 +76,7 @@ class _ShipmentCalculationDestinationViewState
               _DestinationInputField(
                 icon: AppImages.weight,
                 hintText: 'Approx weight',
-                controller: receiverLocationController,
+                controller: weightController,
                 duration: 800,
               ),
             ],
