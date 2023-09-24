@@ -46,10 +46,10 @@ class CustomCacheNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: shape ?? BoxShape.rectangle,
           borderRadius: borderRadius,
-          color: Colors.grey.withOpacity(.5),
+          color: Colors.black.withOpacity(.5),
         ),
         child: Transform.scale(
-          scale: 1.0,
+          scale: 0.5,
           child: const CircularProgressIndicator.adaptive(),
         ),
       ),
@@ -59,7 +59,7 @@ class CustomCacheNetworkImage extends StatelessWidget {
         decoration: BoxDecoration(
           shape: shape ?? BoxShape.rectangle,
           borderRadius: borderRadius,
-          color: Colors.grey.withOpacity(.5),
+          color: Colors.black.withOpacity(.5),
         ),
         child: const Icon(Icons.error_outline),
       ),
