@@ -22,14 +22,14 @@ class HomeAppBarView extends StatelessWidget {
       stretch: true,
       backgroundColor: Colors.white,
       elevation: 0,
-      expandedHeight: 152.h,
+      expandedHeight: 170.h,
       systemOverlayStyle: SystemUiOverlayStyle.light,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [StretchMode.zoomBackground],
         background: Container(
           color: AppColors.primary,
           padding: EdgeInsets.only(
-            top: 60.h,
+            top: 70.h,
             left: AppPadding.horizontal,
             right: AppPadding.horizontal,
             bottom: 20.h,

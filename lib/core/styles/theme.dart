@@ -30,6 +30,9 @@ class AppTheme {
         displayColor: AppColors.textBlack,
         bodyColor: AppColors.textBlack,
       ),
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+      ),
     );
   }
 }

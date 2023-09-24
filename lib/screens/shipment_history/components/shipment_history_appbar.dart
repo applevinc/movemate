@@ -63,7 +63,6 @@ class _ShipmentHistoryAppBarState extends State<ShipmentHistoryAppBar> {
               curve: Curves.easeIn),
       bottom: CustomTabBar(
         isScrollable: true,
-        onTap: (index) => selectTab(index),
         controller: widget.tabController,
         tabs: List.generate(
           tabs.length,
@@ -75,6 +74,7 @@ class _ShipmentHistoryAppBarState extends State<ShipmentHistoryAppBar> {
               name: tab,
               selected: selected,
               controller: widget.tabController,
+              onTap: () => selectTab(index),
             );
           },
         ),
@@ -89,12 +89,14 @@ class _Tab extends StatefulWidget {
     required this.selected,
     required this.controller,
     required this.index,
+    required this.onTap,
   });
 
   final int index;
   final String name;
   final bool selected;
   final TabController controller;
+  final Function() onTap;
 
   @override
   State<_Tab> createState() => _TabState();
@@ -119,14 +121,25 @@ class _TabState extends State<_Tab> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void didUpdateWidget(covariant _Tab oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.selected != oldWidget.selected) {
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         _controller.forward();
-        Future.delayed(const Duration(milliseconds: 200), () {
+        await Future.delayed(const Duration(milliseconds: 200), () {
           _controller.reverse();
         });
+
         widget.controller.animateTo(widget.index);
+        widget.onTap();
       },
       child: ScaleTransition(
         scale: Tween<double>(

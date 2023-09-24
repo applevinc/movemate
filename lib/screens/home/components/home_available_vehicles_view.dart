@@ -10,40 +10,43 @@ class HomeAvailableVehiclesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: 30.h,
-              left: AppPadding.horizontal,
-            ),
-            child: Text(
-              'Available vehicles',
-              style: AppText.bold600(context).copyWith(
-                fontSize: 16.sp,
+    return SliverPadding(
+      padding: EdgeInsets.only(bottom: 20.h),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: 30.h,
+                left: AppPadding.horizontal,
               ),
-            ).animate(key: UniqueKey()).slideY(
-                  begin: 0.6.h,
-                  delay: const Duration(milliseconds: 300),
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.easeIn,
+              child: Text(
+                'Available vehicles',
+                style: AppText.bold600(context).copyWith(
+                  fontSize: 16.sp,
                 ),
-          ),
-          SizedBox(height: 20.h),
-          SizedBox(
-            height: 200.h,
-            child: ListView.separated(
-              itemCount: 5,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
-              itemBuilder: (context, index) => const HomeAvailableVehicleCard(),
-              separatorBuilder: (context, index) => SizedBox(width: 20.w),
+              ).animate(key: UniqueKey()).slideY(
+                    begin: 0.6.h,
+                    delay: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 600),
+                    curve: Curves.easeIn,
+                  ),
             ),
-          ),
-        ],
+            SizedBox(height: 20.h),
+            SizedBox(
+              height: 200.h,
+              child: ListView.separated(
+                itemCount: 5,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: AppPadding.horizontal),
+                itemBuilder: (context, index) => const HomeAvailableVehicleCard(),
+                separatorBuilder: (context, index) => SizedBox(width: 20.w),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
