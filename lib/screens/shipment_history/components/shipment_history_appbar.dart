@@ -5,7 +5,11 @@ import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
 import 'package:movemate/screens/dashboardview.dart';
-import 'package:movemate/screens/widgets/custom_tabbar.dart';
+import 'package:movemate/widgets/custom_tabbar.dart';
+
+final effects = <Effect>[
+  FadeEffect(duration: 100.ms, curve: Curves.easeOut),
+];
 
 class ShipmentHistoryAppBar extends StatefulWidget {
   const ShipmentHistoryAppBar({
@@ -118,15 +122,6 @@ class _TabState extends State<_Tab> with SingleTickerProviderStateMixin {
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant _Tab oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.selected != oldWidget.selected) {
-      setState(() {});
-    }
   }
 
   @override

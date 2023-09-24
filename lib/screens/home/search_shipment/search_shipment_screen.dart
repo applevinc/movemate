@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
-import 'package:movemate/screens/widgets/custom_divider.dart';
-import 'package:movemate/screens/widgets/search_textfield.dart';
+import 'package:movemate/widgets/custom_divider.dart';
+import 'package:movemate/widgets/search_textfield.dart';
 
 class SearchShipmentScreen extends StatefulWidget {
   const SearchShipmentScreen({super.key});

@@ -7,7 +7,7 @@ import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
 import 'package:movemate/screens/dashboardview.dart';
-import 'package:movemate/screens/widgets/app_button.dart';
+import 'package:movemate/widgets/app_button.dart';
 
 class ShipmentCalculationSummaryScreen extends StatelessWidget {
   const ShipmentCalculationSummaryScreen({super.key});

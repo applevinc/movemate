@@ -46,7 +46,7 @@ class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
           body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
-                 ShipmentHistoryAppBar(tabController: tabController),
+                ShipmentHistoryAppBar(tabController: tabController),
                 SliverPadding(
                   padding: EdgeInsets.only(
                     top: AppPadding.vertical,

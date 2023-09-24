@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/spacing.dart';
-import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
 import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_appbar_view.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_categories_view.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_destination_view.dart';
 import 'package:movemate/screens/shipment_calculation/components/shipment_calculation_packaging_view.dart';
 import 'package:movemate/screens/shipment_calculation/shipment_calculation_summary/shipment_calculation_summary.dart';
-import 'package:movemate/screens/widgets/app_button.dart';
-import 'package:movemate/screens/widgets/close_keyboard_wrapper.dart';
+import 'package:movemate/widgets/app_button.dart';
+import 'package:movemate/widgets/close_keyboard_wrapper.dart';
 
 class ShipmentCalculationScreen extends StatelessWidget {
   const ShipmentCalculationScreen({super.key});
@@ -23,35 +24,27 @@ class ShipmentCalculationScreen extends StatelessWidget {
       },
       child: CloseKeyboardWrapper(
         child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            leading: BackButton(
-              color: Colors.white,
-              onPressed: () {
-                AppNavigator.pushAndRemoveUntil(context, const DashboardView());
-              },
-            ),
-            title: Text(
-              'Calculate',
-              style: AppText.bold500(context).copyWith(
-                fontSize: 16.sp,
-                color: Colors.white,
-              ),
-            ),
-          ),
+          extendBodyBehindAppBar: true,
           body: SingleChildScrollView(
-            padding: EdgeInsets.only(
-              top: 20.h,
-              left: AppPadding.horizontal,
-              right: AppPadding.horizontal,
-              bottom: 40.h,
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                ShipmentCalculationDestinationView(),
-                ShipmentCalculationPackingView(),
-                ShipmentCalculationCategoriesView(),
+              children: [
+                const ShipmentCalculationAppBarView(),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 20.h,
+                    left: AppPadding.horizontal,
+                    right: AppPadding.horizontal,
+                    bottom: 40.h,
+                  ),
+                  child: Column(
+                    children: const [
+                      ShipmentCalculationDestinationView(),
+                      ShipmentCalculationPackingView(),
+                      ShipmentCalculationCategoriesView(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -67,7 +60,9 @@ class ShipmentCalculationScreen extends StatelessWidget {
                 AppNavigator.to(context, const ShipmentCalculationSummaryScreen());
               },
             ),
-          ),
+          )
+              .animate(key: UniqueKey(), delay: const Duration(milliseconds: 500))
+              .slideY(begin: 0.7.h, duration: const Duration(milliseconds: 600)),
         ),
       ),
     );

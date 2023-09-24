@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
@@ -46,7 +47,7 @@ class _ShipmentCalculationDestinationViewState
             fontSize: 16.sp,
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: gap),
         Container(
           padding: EdgeInsets.all(20.sp),
           decoration: BoxDecoration(
@@ -61,18 +62,21 @@ class _ShipmentCalculationDestinationViewState
                 icon: Icons.cloud_download_outlined,
                 hintText: 'Sender location',
                 controller: senderLocationController,
+                duration: 600,
               ),
               SizedBox(height: gap),
               _DestinationInputField(
                 icon: Icons.cloud_download_outlined,
                 hintText: 'Receiver location',
                 controller: receiverLocationController,
+                duration: 700,
               ),
               SizedBox(height: gap),
               _DestinationInputField(
                 icon: Icons.cloud_download_outlined,
                 hintText: 'Approx weight',
                 controller: receiverLocationController,
+                duration: 800,
               ),
             ],
           ),
@@ -87,11 +91,13 @@ class _DestinationInputField extends StatelessWidget {
     required this.icon,
     required this.hintText,
     required this.controller,
+    required this.duration,
   });
 
   final IconData icon;
   final String hintText;
   final TextEditingController controller;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +132,8 @@ class _DestinationInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
         ),
       ),
-    );
+    )
+        .animate(key: UniqueKey(), delay: const Duration(milliseconds: 250))
+        .slideY(begin: 0.7.h, duration: Duration(milliseconds: duration));
   }
 }
