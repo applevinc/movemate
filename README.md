@@ -6,10 +6,10 @@ Dribble design found on [dribble.com](https://dribbble.com/shots/21617837-Movema
 
 # Screenshots
 <tr>
-    <td><img align="left" src="https://github.com/applevinc/movemate/assets/67894127/5ac84741-8e04-42c1-ab3a-02e802025980" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/movemate/assets/67894127/ca021128-241a-49ba-aca7-002e170f25fa" width="200" height="400"/></td> 
+    <td><img align="left" src="https://github.com/applevinc/movemate/assets/67894127/f79abb63-0926-4171-858b-d44e48b56037" width="200" height="400"/></td>
+    <td><img src="https://github.com/applevinc/movemate/assets/67894127/94bf7df8-5652-4ae3-bb26-c926be87a5b4" width="200" height="400"/></td> 
 </tr>
 <tr>
-    <td><img align="left" src="https://github.com/applevinc/movemate/assets/67894127/dc54e1c2-27b1-42e8-aafe-c7fbe1f5ffb8" width="200" height="400"/></td>
-    <td><img src="https://github.com/applevinc/movemate/assets/67894127/c4e21c79-2edb-4d42-aa91-1048e5accd5a" width="200" height="400"/></td> 
+    <td><img align="left" src="https://github.com/applevinc/movemate/assets/67894127/a8da6e5c-3aa5-477a-949c-c872fae6c13a" width="200" height="400"/></td>
+    <td><img src="https://github.com/applevinc/movemate/assets/67894127/dc544b93-1242-453e-853f-fd89e1b0ddcb" width="200" height="400"/></td> 
 </tr>
