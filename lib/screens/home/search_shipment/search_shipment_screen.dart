@@ -1,16 +1,61 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
-import 'package:movemate/core/styles/text.dart';
+import 'package:movemate/models/shipment.model.dart';
+import 'package:movemate/screens/home/search_shipment/components/search_shipment_item.view.dart';
 import 'package:movemate/widgets/custom_divider.dart';
 import 'package:movemate/widgets/search_textfield.dart';
 
-class SearchShipmentScreen extends StatelessWidget {
+class SearchShipmentScreen extends StatefulWidget {
   const SearchShipmentScreen({super.key});
+
+  @override
+  State<SearchShipmentScreen> createState() => _SearchShipmentScreenState();
+}
+
+class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
+  List<Shipment> filterableShipments = shipments;
+  Timer? _debounce;
+
+  void search(String query) {
+    if (shipments.isEmpty) {
+      return;
+    }
+
+    if (query.isEmpty) {
+      filterableShipments = shipments;
+      setState(() {});
+      return;
+    }
+
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+    _debounce = Timer(
+      const Duration(milliseconds: 500),
+      () {
+        final filteredShipments = shipments.where((shipment) {
+          final queryLower = query.toLowerCase();
+          final shipmentNameLower = shipment.name.toLowerCase();
+
+          return shipmentNameLower.contains(queryLower);
+        }).toList();
+
+        filterableShipments = filteredShipments;
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,47 +73,51 @@ class SearchShipmentScreen extends StatelessWidget {
                 bottom: 20.h,
               ),
               child: Row(
-                children: const [
-                  BackButton(color: Colors.white),
+                children: [
+                  const BackButton(color: Colors.white),
                   Expanded(
                     child: Hero(
                       tag: 'search',
                       child: SearchTextField(
                         autoFocus: true,
                         readOnly: false,
+                        onChanged: (query) => search(query),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                vertical: 20.h,
-                horizontal: AppPadding.horizontal,
+            if (filterableShipments.isNotEmpty)
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: 20.h,
+                  horizontal: AppPadding.horizontal,
+                ),
+                padding: EdgeInsets.symmetric(vertical: 20.h),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: AppColors.boxshadow,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: filterableShipments.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    final shipment = filterableShipments[index];
+                    return SearchShipmentItemView(shipment: shipment, index: index);
+                  },
+                  separatorBuilder: (context, index) => CustomDivider(
+                    padding: EdgeInsets.symmetric(vertical: 10.h),
+                  ).animate(key: UniqueKey()).slideY(
+                        begin: 0.7.h,
+                        duration: Duration(milliseconds: 600 + (index * 50)),
+                        curve: Curves.easeIn,
+                      ),
+                ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 20.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: AppColors.boxshadow,
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: 4,
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return SearchShipmentResultView(index: index);
-                },
-                separatorBuilder: (context, index) => CustomDivider(
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                ).animate(key: UniqueKey()).slideY(
-                      begin: 0.7.h,
-                      duration: Duration(milliseconds: 600 + (index * 50)),
-                      curve: Curves.easeIn,
-                    ),
-              ),
-            ),
           ],
         ),
       ),
@@ -76,59 +125,35 @@ class SearchShipmentScreen extends StatelessWidget {
   }
 }
 
-class SearchShipmentResultView extends StatelessWidget {
-  const SearchShipmentResultView({super.key, required this.index});
-
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPadding.symetricHorizontalOnly,
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.sp),
-            decoration: const BoxDecoration(
-              color: AppColors.primary,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              MdiIcons.packageVariantClosed,
-              size: 24.sp,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Summer linen jacket',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppText.bold600(context),
-                ),
-                SizedBox(height: 4.h),
-                Text(
-                  '#NEJ20089934122231 • Barcelona - Paris',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppText.bold600(context).copyWith(
-                    color: AppColors.textGrey,
-                    fontSize: 12.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ).animate(key: UniqueKey()).slideY(
-          begin: 0.7.h,
-          duration: Duration(milliseconds: 600 + (index * 50)),
-          curve: Curves.easeIn,
-        );
-  }
-}
+final shipments = [
+  Shipment(
+    id: '#NEJ20089934122231',
+    name: 'Macbook Pro M2',
+    from: 'Paris',
+    to: 'Morocco',
+  ),
+  Shipment(
+    id: '#NEJ20089934122231',
+    name: 'Summer linen jacket',
+    from: 'Barcelona',
+    to: 'Paris',
+  ),
+  Shipment(
+    id: '#NEJ20089934122231',
+    name: 'Tapered-fit jeans AW',
+    from: 'Columbia',
+    to: 'Paris',
+  ),
+  Shipment(
+    id: '#NEJ20089934122231',
+    name: 'Slim fit jeans AW',
+    from: 'Bogota',
+    to: 'Dhaka',
+  ),
+  Shipment(
+    id: '#NEJ20089934122231',
+    name: 'Office setup desk',
+    from: 'France',
+    to: 'Germany',
+  ),
+];
