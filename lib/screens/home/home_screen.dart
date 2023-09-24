@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movemate/screens/home/components/home_appbar_view.dart';
-import 'package:movemate/screens/home/components/home_available_vehicles_view.dart';
-import 'package:movemate/screens/home/components/home_tracking_view.dart';
+import 'package:movemate/screens/home/components/home_appbar.view.dart';
+import 'package:movemate/screens/home/components/home_available_vehicles.view.dart';
+import 'package:movemate/screens/home/components/home_shipment_tracking.view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           HomeAppBarView(),
-          HomeTrackingView(),
+          HomeShipmentTrackingView(),
           HomeAvailableVehiclesView(),
         ],
       ),

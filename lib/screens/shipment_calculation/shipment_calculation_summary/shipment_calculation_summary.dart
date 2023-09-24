@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movemate/assets/app_assets.dart';
+import 'package:movemate/assets/images.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
@@ -27,7 +27,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Image.asset(
-                    AppAssets.logo,
+                    AppImages.logo,
                     height: 40.h,
                   ),
                 )
@@ -36,7 +36,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                     .slideY(begin: 0.7.h),
                 const Spacer(),
                 Image.asset(
-                  AppAssets.box,
+                  AppImages.box,
                   height: 170.h,
                 )
                     .animate(key: UniqueKey())

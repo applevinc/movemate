@@ -18,10 +18,11 @@ class HomeAppBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      stretch: true,
-      backgroundColor: Colors.white,
       elevation: 0,
       expandedHeight: 170.h,
+      //surfaceTintColor: AppColors.primary,
+      //shadowColor: AppColors.primary,
+      //foregroundColor: AppColors.primary,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [StretchMode.zoomBackground],
         background: Container(
@@ -107,7 +108,7 @@ class HomeAppBarView extends StatelessWidget {
               ),
             ],
           ),
-        ).animate(key: UniqueKey()).slideY(
+        ).animate().slideY(
               begin: -0.5.h,
               duration: const Duration(milliseconds: 600),
               curve: Curves.easeIn,

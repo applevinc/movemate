@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movemate/assets/images.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/widgets/custom_divider.dart';
 
-class HomeTrackingView extends StatelessWidget {
-  const HomeTrackingView({super.key});
+class HomeShipmentTrackingView extends StatelessWidget {
+  const HomeShipmentTrackingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class HomeTrackingView extends StatelessWidget {
             SizedBox(height: 1.h),
             const AddStopButton(),
           ],
-        ).animate(key: UniqueKey()).slideY(
+        ).animate().slideY(
               begin: 0.2.h,
               duration: const Duration(milliseconds: 600),
               curve: Curves.easeIn,
@@ -88,17 +89,20 @@ class HomeShipmentStopCard extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              Container(
-                height: 40.h,
-                width: 30.w,
-                color: Colors.black,
+              Image.asset(
+                AppImages.moverTruck,
+                height: 60.h,
+                width: 60.h,
               ),
             ],
           ),
           const CustomDivider(),
           Row(
             children: [
-              imageIcon(),
+              imageIcon(
+                icon: AppImages.senderPackage,
+                color: const Color(0xffffe5d5),
+              ),
               SizedBox(width: 12.w),
               SizedBox(
                 width: 110.w,
@@ -145,7 +149,10 @@ class HomeShipmentStopCard extends StatelessWidget {
           SizedBox(height: 40.h),
           Row(
             children: [
-              imageIcon(),
+              imageIcon(
+                icon: AppImages.receiverPackage,
+                color: const Color(0xffd4f0de),
+              ),
               SizedBox(width: 12.w),
               SizedBox(
                 width: 110.w,
@@ -188,17 +195,20 @@ class HomeShipmentStopCard extends StatelessWidget {
     );
   }
 
-  Container imageIcon() {
+  Container imageIcon({
+    required String icon,
+    required Color color,
+  }) {
     return Container(
       padding: EdgeInsets.all(8.sp),
-      decoration: const BoxDecoration(
-        color: Color(0xffffe5d5),
+      decoration: BoxDecoration(
+        color: color,
         shape: BoxShape.circle,
       ),
-      child: Icon(
-        Icons.shop_2,
-        color: Colors.black,
-        size: 24.sp,
+      child: Image.asset(
+        icon,
+        height: 24.h,
+        width: 24.h,
       ),
     );
   }

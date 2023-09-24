@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 
@@ -73,7 +74,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
               shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.shop_outlined,
+              MdiIcons.filterVariant,
               color: Colors.white,
               size: 24.sp,
             ),

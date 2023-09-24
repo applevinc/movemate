@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
@@ -93,7 +94,7 @@ class SearchShipmentResultView extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.shop_outlined,
+              MdiIcons.packageVariantClosed,
               size: 24.sp,
               color: Colors.white,
             ),

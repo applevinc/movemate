@@ -82,7 +82,7 @@ class _DashboardViewState extends State<DashboardView> {
                 color: AppColors.textGrey,
               ),
               onTap: _onPageTapped,
-            ).animate(key: UniqueKey()).slideY(
+            ).animate().slideY(
                 begin: 0.7.h,
                 duration: const Duration(milliseconds: 600),
                 curve: Curves.easeIn,
