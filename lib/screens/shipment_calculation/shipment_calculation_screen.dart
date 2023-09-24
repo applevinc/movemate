@@ -38,31 +38,30 @@ class ShipmentCalculationScreen extends StatelessWidget {
                     bottom: 40.h,
                   ),
                   child: Column(
-                    children: const [
-                      ShipmentCalculationDestinationView(),
-                      ShipmentCalculationPackingView(),
-                      ShipmentCalculationCategoriesView(),
+                    children: [
+                      const ShipmentCalculationDestinationView(),
+                      const ShipmentCalculationPackingView(),
+                      const ShipmentCalculationCategoriesView(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 40.h,
+                          horizontal: AppPadding.horizontal,
+                        ),
+                        child: AppButton(
+                          label: 'Calculate',
+                          onTap: () {
+                            AppNavigator.to(
+                                context, const ShipmentCalculationSummaryScreen());
+                          },
+                        ),
+                      ).animate(delay: const Duration(milliseconds: 500)).slideY(
+                          begin: 0.7.h, duration: const Duration(milliseconds: 600)),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          bottomNavigationBar: Padding(
-            padding: EdgeInsets.only(
-              left: AppPadding.horizontal,
-              right: AppPadding.horizontal,
-              bottom: 40.h,
-            ),
-            child: AppButton(
-              label: 'Calculate',
-              onTap: () {
-                AppNavigator.to(context, const ShipmentCalculationSummaryScreen());
-              },
-            ),
-          )
-              .animate(delay: const Duration(milliseconds: 500))
-              .slideY(begin: 0.7.h, duration: const Duration(milliseconds: 600)),
         ),
       ),
     );

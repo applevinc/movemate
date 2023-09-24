@@ -20,9 +20,7 @@ class HomeAppBarView extends StatelessWidget {
     return SliverAppBar(
       elevation: 0,
       expandedHeight: 170.h,
-      //surfaceTintColor: AppColors.primary,
-      //shadowColor: AppColors.primary,
-      //foregroundColor: AppColors.primary,
+      automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [StretchMode.zoomBackground],
         background: Container(

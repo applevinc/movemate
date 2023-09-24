@@ -31,7 +31,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                     height: 40.h,
                   ),
                 )
-                    .animate(key: UniqueKey())
+                    .animate()
                     .fade(duration: const Duration(milliseconds: 500))
                     .slideY(begin: 0.7.h),
                 const Spacer(),
@@ -39,7 +39,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                   AppImages.box,
                   height: 170.h,
                 )
-                    .animate(key: UniqueKey())
+                    .animate()
                     .fade(duration: const Duration(milliseconds: 600))
                     .scaleXY(begin: 0.3.h, end: 1)
                     .slideY(begin: 0.7.h),
@@ -51,7 +51,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                     color: Colors.black,
                   ),
                 )
-                    .animate(key: UniqueKey())
+                    .animate()
                     .fade(duration: const Duration(milliseconds: 700))
                     .slideY(begin: 0.7.h),
                 SizedBox(height: 4.h),
@@ -83,7 +83,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                         );
                       },
                     )
-                    .animate(key: UniqueKey())
+                    .animate()
                     .fade(duration: const Duration(milliseconds: 800))
                     .slideY(begin: 0.7.h),
                 SizedBox(height: 4.h),
@@ -96,7 +96,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                       color: const Color(0xff9b9b9b),
                     ),
                   )
-                      .animate(key: UniqueKey())
+                      .animate()
                       .fade(duration: const Duration(milliseconds: 900))
                       .slideY(begin: 0.7.h),
                 ),
@@ -108,7 +108,7 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                         context, const ShipmentHistoryScreen());
                   },
                 )
-                    .animate(key: UniqueKey())
+                    .animate()
                     .fade(duration: const Duration(seconds: 2))
                     .slideY(begin: 0.7.h),
                 const Spacer(flex: 2),

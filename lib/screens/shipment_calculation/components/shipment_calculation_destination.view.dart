@@ -105,6 +105,7 @@ class _DestinationInputField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       style: AppText.bold500(context),
+      textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(10.sp),
         hintText: hintText,

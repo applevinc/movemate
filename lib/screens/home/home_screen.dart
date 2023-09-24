@@ -8,13 +8,18 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          HomeAppBarView(),
-          HomeShipmentTrackingView(),
-          HomeAvailableVehiclesView(),
-        ],
+    return WillPopScope(
+      onWillPop: () {
+        return Future.value(false);
+      },
+      child: const Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            HomeAppBarView(),
+            HomeShipmentTrackingView(),
+            HomeAvailableVehiclesView(),
+          ],
+        ),
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/models/shipment.model.dart';
 import 'package:movemate/screens/home/search_shipment/components/search_shipment_item.view.dart';
+import 'package:movemate/widgets/close_keyboard_wrapper.dart';
 import 'package:movemate/widgets/custom_divider.dart';
 import 'package:movemate/widgets/search_textfield.dart';
 
@@ -61,64 +62,66 @@ class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        body: Column(
-          children: [
-            Container(
-              color: AppColors.primary,
-              padding: EdgeInsets.only(
-                top: 60.h,
-                right: AppPadding.horizontal,
-                //left: AppPadding.horizontal,
-                bottom: 20.h,
-              ),
-              child: Row(
-                children: [
-                  const BackButton(color: Colors.white),
-                  Expanded(
-                    child: Hero(
-                      tag: 'search',
-                      child: SearchTextField(
-                        autoFocus: true,
-                        readOnly: false,
-                        onChanged: (query) => search(query),
+      child: CloseKeyboardWrapper(
+        child: Scaffold(
+          body: Column(
+            children: [
+              Container(
+                color: AppColors.primary,
+                padding: EdgeInsets.only(
+                  top: 60.h,
+                  right: AppPadding.horizontal,
+                  //left: AppPadding.horizontal,
+                  bottom: 20.h,
+                ),
+                child: Row(
+                  children: [
+                    const BackButton(color: Colors.white),
+                    Expanded(
+                      child: Hero(
+                        tag: 'search',
+                        child: SearchTextField(
+                          //autoFocus: true,
+                          readOnly: false,
+                          onChanged: (query) => search(query),
+                        ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+              if (filterableShipments.isNotEmpty)
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 20.h,
+                    horizontal: AppPadding.horizontal,
                   ),
-                ],
-              ),
-            ),
-            if (filterableShipments.isNotEmpty)
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 20.h,
-                  horizontal: AppPadding.horizontal,
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: AppColors.boxshadow,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    itemCount: filterableShipments.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, index) {
+                      final shipment = filterableShipments[index];
+                      return SearchShipmentItemView(shipment: shipment, index: index);
+                    },
+                    separatorBuilder: (context, index) => CustomDivider(
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                    ).animate(key: UniqueKey()).slideY(
+                          begin: 0.7.h,
+                          duration: Duration(milliseconds: 600 + (index * 50)),
+                          curve: Curves.easeIn,
+                        ),
+                  ),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 20.h),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: AppColors.boxshadow,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: filterableShipments.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    final shipment = filterableShipments[index];
-                    return SearchShipmentItemView(shipment: shipment, index: index);
-                  },
-                  separatorBuilder: (context, index) => CustomDivider(
-                    padding: EdgeInsets.symmetric(vertical: 10.h),
-                  ).animate(key: UniqueKey()).slideY(
-                        begin: 0.7.h,
-                        duration: Duration(milliseconds: 600 + (index * 50)),
-                        curve: Curves.easeIn,
-                      ),
-                ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
