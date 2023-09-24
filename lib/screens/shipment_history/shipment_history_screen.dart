@@ -40,33 +40,30 @@ class _ShipmentHistoryScreenState extends State<ShipmentHistoryScreen>
         AppNavigator.pushAndRemoveUntil(context, const DashboardView());
         return Future.value(true);
       },
-      child: DefaultTabController(
-        length: 5,
-        child: Scaffold(
-          body: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                ShipmentHistoryAppBar(tabController: tabController),
-                SliverPadding(
-                  padding: EdgeInsets.only(
-                    top: AppPadding.vertical,
-                    left: AppPadding.horizontal,
-                  ),
-                  sliver: SliverToBoxAdapter(
-                    child: Text(
-                      'Shipments',
-                      style: AppText.bold600(context).copyWith(
-                        fontSize: 22.sp,
-                      ),
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              ShipmentHistoryAppBar(tabController: tabController),
+              SliverPadding(
+                padding: EdgeInsets.only(
+                  top: AppPadding.vertical,
+                  left: AppPadding.horizontal,
+                ),
+                sliver: SliverToBoxAdapter(
+                  child: Text(
+                    'Shipments',
+                    style: AppText.bold600(context).copyWith(
+                      fontSize: 22.sp,
                     ),
                   ),
                 ),
-              ];
-            },
-            body: TabBarView(
-              controller: tabController,
-              children: List.generate(5, (index) => const ShipmentHistoryView()),
-            ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            controller: tabController,
+            children: List.generate(5, (index) => const ShipmentHistoryView()),
           ),
         ),
       ),

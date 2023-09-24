@@ -8,14 +8,9 @@ import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/widgets/custom_divider.dart';
 import 'package:movemate/widgets/search_textfield.dart';
 
-class SearchShipmentScreen extends StatefulWidget {
+class SearchShipmentScreen extends StatelessWidget {
   const SearchShipmentScreen({super.key});
 
-  @override
-  State<SearchShipmentScreen> createState() => _SearchShipmentScreenState();
-}
-
-class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -28,7 +23,7 @@ class _SearchShipmentScreenState extends State<SearchShipmentScreen> {
               padding: EdgeInsets.only(
                 top: 60.h,
                 right: AppPadding.horizontal,
-                left: AppPadding.horizontal,
+                //left: AppPadding.horizontal,
                 bottom: 20.h,
               ),
               child: Row(

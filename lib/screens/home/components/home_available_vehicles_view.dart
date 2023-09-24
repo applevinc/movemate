@@ -90,8 +90,7 @@ class HomeAvailableVehicleCard extends StatelessWidget {
               color: Colors.black,
             ).animate(key: UniqueKey()).slideX(
                   begin: 0.6.h,
-                  delay: const Duration(milliseconds: 300),
-                  duration: const Duration(milliseconds: 600),
+                  duration: const Duration(milliseconds: 900),
                   curve: Curves.easeIn,
                 ),
           ),

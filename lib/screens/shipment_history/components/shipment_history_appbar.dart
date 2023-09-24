@@ -5,6 +5,7 @@ import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
 import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/widgets/animated_button.dart';
 import 'package:movemate/widgets/custom_tabbar.dart';
 
 final effects = <Effect>[
@@ -73,6 +74,7 @@ class _ShipmentHistoryAppBarState extends State<ShipmentHistoryAppBar> {
           (index) {
             final tab = tabs[index];
             final selected = tab == selectedTab;
+
             return _Tab(
               index: index,
               name: tab,
@@ -87,7 +89,7 @@ class _ShipmentHistoryAppBarState extends State<ShipmentHistoryAppBar> {
   }
 }
 
-class _Tab extends StatefulWidget {
+class _Tab extends StatelessWidget {
   const _Tab({
     required this.name,
     required this.selected,
@@ -103,71 +105,41 @@ class _Tab extends StatefulWidget {
   final Function() onTap;
 
   @override
-  State<_Tab> createState() => _TabState();
-}
-
-class _TabState extends State<_Tab> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 150),
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        _controller.forward();
-        await Future.delayed(const Duration(milliseconds: 200), () {
-          _controller.reverse();
-        });
+    //final count = (Random().nextInt(5) + 1).toString();
+    const count = '2';
 
-        widget.controller.animateTo(widget.index);
-        widget.onTap();
+    return AnimatedButton(
+      onTap: () {
+        controller.animateTo(index);
+        onTap();
       },
-      child: ScaleTransition(
-        scale: Tween<double>(
-          begin: 1.0,
-          end: 0.7,
-        ).animate(_controller),
-        child: Padding(
-          padding: EdgeInsets.only(bottom: 10.h),
-          child: Row(
-            children: [
-              Text(
-                widget.name,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 10.h),
+        child: Row(
+          children: [
+            Text(
+              name,
+              style: AppText.bold600(context).copyWith(
+                color: selected ? Colors.white : const Color(0xffc2b4ee),
+              ),
+            ),
+            SizedBox(width: 8.w),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 10.w),
+              decoration: BoxDecoration(
+                color: selected ? AppColors.orange : const Color(0xff7257c4),
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              child: Text(
+                count,
                 style: AppText.bold600(context).copyWith(
-                  color: widget.selected ? Colors.white : const Color(0xffc2b4ee),
+                  fontSize: 12.sp,
+                  color: selected ? Colors.white : const Color(0xffc4b2fb),
                 ),
               ),
-              SizedBox(width: 8.w),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 10.w),
-                decoration: BoxDecoration(
-                  color: widget.selected ? AppColors.orange : const Color(0xff7257c4),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Text(
-                  '2',
-                  style: AppText.bold600(context).copyWith(
-                    fontSize: 12.sp,
-                    color: widget.selected ? Colors.white : const Color(0xffc4b2fb),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

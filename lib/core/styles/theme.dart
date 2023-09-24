@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:movemate/core/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,6 +33,12 @@ class AppTheme {
       ),
       appBarTheme: const AppBarTheme(
         centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.red,
+          systemNavigationBarColor: Colors.red,
+          statusBarIconBrightness: Brightness.dark,
+          systemNavigationBarIconBrightness: Brightness.dark,
+        ),
       ),
     );
   }

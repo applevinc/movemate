@@ -7,7 +7,7 @@ import 'package:movemate/core/styles/colors.dart';
 import 'package:movemate/core/styles/spacing.dart';
 import 'package:movemate/core/styles/text.dart';
 import 'package:movemate/core/utils/navigator.dart';
-import 'package:movemate/screens/dashboardview.dart';
+import 'package:movemate/screens/shipment_history/shipment_history_screen.dart';
 import 'package:movemate/widgets/app_button.dart';
 
 class ShipmentCalculationSummaryScreen extends StatelessWidget {
@@ -104,7 +104,8 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
                 AppButton(
                   label: 'Back to home',
                   onTap: () {
-                    AppNavigator.pushAndRemoveUntil(context, const DashboardView());
+                    AppNavigator.pushAndRemoveUntil(
+                        context, const ShipmentHistoryScreen());
                   },
                 )
                     .animate(key: UniqueKey())
