@@ -3,6 +3,7 @@ class AppImages {
 
   static const logo = 'assets/logo.png';
   static const box = 'assets/box.png';
+  static const boxWithShadow = 'assets/box-with-shadow.png';
   static const cargoShip = 'assets/cargo-ship.png';
   static const cargoTruck = 'assets/cargo-truck.png';
   static const train = 'assets/train.png';

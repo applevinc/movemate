@@ -107,7 +107,7 @@ class _Tab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final count = (Random().nextInt(5) + 1).toString();
-    const count = '2';
+    const count = '5';
 
     return AnimatedButton(
       onTap: () {
