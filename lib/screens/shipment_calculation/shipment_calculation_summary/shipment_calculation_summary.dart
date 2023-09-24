@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/assets/images.dart';
@@ -16,8 +15,11 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       body: SafeArea(
-        child: Padding(
+        bottom: false,
+        child: Container(
+          color: Colors.white,
           padding: AppPadding.symetricHorizontalOnly,
           child: Column(
             children: [
@@ -102,13 +104,9 @@ class ShipmentCalculationSummaryScreen extends StatelessWidget {
               AppButton(
                 label: 'Back to home',
                 onTap: () {
-                  AppNavigator.pushAndRemoveUntil(
-                      context, const ShipmentHistoryScreen());
+                  AppNavigator.pushAndRemoveUntil(context, const ShipmentHistoryScreen());
                 },
-              )
-                  .animate()
-                  .fade(duration: const Duration(seconds: 2))
-                  .slideY(begin: 0.7.h),
+              ).animate().fade(duration: const Duration(seconds: 2)).slideY(begin: 0.7.h),
               const Spacer(flex: 2),
             ],
           ),

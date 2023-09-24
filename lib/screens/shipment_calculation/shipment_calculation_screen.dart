@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movemate/core/styles/colors.dart';
@@ -25,14 +24,13 @@ class ShipmentCalculationScreen extends StatelessWidget {
         return Future.value(true);
       },
       child: CloseKeyboardWrapper(
-        child: AnnotatedRegion(
-          value: SystemUiOverlayStyle.light.copyWith(
-            statusBarColor: AppColors.primary,
-          ),
-          child: Scaffold(
-            body: SafeArea(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+        child: Scaffold(
+          backgroundColor: AppColors.primary,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Container(
+                color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
